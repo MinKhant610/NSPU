@@ -5,6 +5,14 @@ from chat import chatRequest
 from PIL import Image, ImageTk
 from tkinter.font import Font
 from ttkbootstrap import ttk
+from ttkbootstrap.dialogs import Messagebox
+
+def reportNow():
+    user_name_entry.delete(0, 'end')
+    user_phone_entry.delete(0, 'end')
+    location_code_entry.delete(0, 'end')
+    Messagebox.show_info(title='Report Status', message='Record Successfully', alert=True)
+
 
 root = tk.Tk()
 root.title("Fix Waste")
@@ -99,7 +107,7 @@ notebook.add(report_frame, text='Report')
 
 entry_font = Font(family='Helvetica', size=16)
 
-get_logo = Image.open('images/smarthome.png').resize((250, 250), Image.Resampling.LANCZOS)
+get_logo = Image.open('images/report.png').resize((250, 250), Image.Resampling.LANCZOS)
 mc_logo = ImageTk.PhotoImage(get_logo)
 
 ttk.Label(report_frame, image=mc_logo).pack()
@@ -107,22 +115,22 @@ title = ttk.Label(report_frame, text='Report or disscus local problem', font=('H
 title.pack(pady=5)
 
 user_name = ttk.Label(report_frame, text='Name')
-user_name.pack(anchor='nw', padx=20, pady=5)
-user_name_entry = ttk.Entry(report_frame)
-user_name_entry.pack(anchor='nw', padx=20, pady=5)
+user_name.pack(anchor='nw', padx=50, pady=5)
+user_name_entry = ttk.Entry(report_frame, width=30)
+user_name_entry.pack(anchor='nw', padx=50, pady=5)
 
 user_phone = ttk.Label(report_frame, text='Phone')
-user_phone.pack(anchor='nw', padx=20, pady=5)
-user_phone_entry = ttk.Entry(report_frame)
-user_phone_entry.pack(anchor='nw', padx=20, pady=5)
+user_phone.pack(anchor='nw', padx=50, pady=5)
+user_phone_entry = ttk.Entry(report_frame, width=30)
+user_phone_entry.pack(anchor='nw', padx=50, pady=5)
 
 location_code = ttk.Label(report_frame, text='Location Code')
-location_code.pack(anchor='nw', padx=20, pady=5)
-location_code_entry = ttk.Entry(report_frame)
-location_code_entry.pack(anchor='nw', padx=20, pady=5)
+location_code.pack(anchor='nw', padx=50, pady=5)
+location_code_entry = ttk.Entry(report_frame, width=30)
+location_code_entry.pack(anchor='nw', padx=50, pady=5)
 
 categroy = ttk.Label(report_frame, text='Choose Categroy')
-categroy.pack(anchor='nw', padx=20, pady=5)
+categroy.pack(anchor='nw', padx=50, pady=5)
 
 wastes = []
 variable = tk.StringVar()
@@ -141,12 +149,12 @@ waste_type = ttk.OptionMenu(
     bootstyle='dark',
 )
 
-waste_type.pack(anchor='nw', padx=20, pady=5)
-waste_type.configure(width=17)
+waste_type.pack(anchor='nw', padx=50, pady=5)
+waste_type.configure(width=26)
 
 # Report Status
 report = ttk.Label(report_frame, text='Report Status')
-report.pack(anchor='nw', padx=20, pady=5)
+report.pack(anchor='nw', padx=50, pady=5)
 report_list = ['Open', 'NotFixed']
 report_var = tk.StringVar()
 
@@ -157,12 +165,12 @@ report_watste = ttk.OptionMenu(
     *report_list,
     bootstyle='dark'
 )
-report_watste.pack(anchor='nw', padx=20, pady=5)
-report_watste.configure(width=17)
+report_watste.pack(anchor='nw', padx=50, pady=5)
+report_watste.configure(width=26)
 
-report_btn = ttk.Button(report_frame, text='Report Now', bootstyle='success')
+report_btn = ttk.Button(report_frame, text='Report Now', bootstyle='success', command=reportNow)
 
-report_btn.pack(anchor='nw', padx=70, pady=5)
+report_btn.pack(anchor='nw', padx=150, pady=5)
 
 
 # Start the Tkinter main loop
