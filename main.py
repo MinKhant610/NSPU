@@ -6,6 +6,8 @@ from PIL import Image, ImageTk
 from tkinter.font import Font
 from ttkbootstrap import ttk
 from ttkbootstrap.dialogs import Messagebox
+from report import showReport
+from report import recycleReward
 
 def reportNow():
     user_name_entry.delete(0, 'end')
@@ -51,6 +53,14 @@ try:
     image_label.pack(pady=20)
 except Exception as e:
     print(f"Error loading image: {e}")
+
+# top level button
+all_report_btn = ttk.Button(home_frame, text='All reports', command=showReport)
+all_report_btn.place(x=150, y=600)
+
+recycle_rewards = ttk.Button(home_frame, text='Recyle rewards', command=recycleReward)
+recycle_rewards.place(x=400, y=600)
+
 
 # --- Chat Bot Frame ---
 chat_bot_frame = ttk.Frame(notebook)
